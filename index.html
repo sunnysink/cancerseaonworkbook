@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cancer Season Workbook | Nurture Your Soul</title>
+  <style>
+    :root {
+      --bg: #fbf5ea;
+      --bg2: #e7f4ee;
+      --paper: rgba(255, 252, 245, 0.88);
+      --paper-solid: #fffaf0;
+      --ink: #2f3d39;
+      --muted: #6f7e78;
+      --teal: #6aa693;
+      --teal-dark: #3f7f6d;
+      --violet: #7c5aa6;
+      --gold: #bd9145;
+      --rose: #d98c8f;
+      --shell: #f8e5d8;
+      --line: rgba(91, 125, 112, 0.23);
+      --shadow: 0 22px 60px rgba(55, 83, 72, 0.18);
+      --radius: 28px;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    [data-theme="moonlit"] {
+      --bg: #f3f4f9;
+      --bg2: #dcecf0;
+      --paper: rgba(255, 255, 255, 0.86);
+      --paper-solid: #ffffff;
+      --ink: #293240;
+      --muted: #667184;
+      --teal: #6e9fb4;
+      --teal-dark: #3d738a;
+      --violet: #6b5da8;
+      --gold: #b8934d;
+      --rose: #d7a0a7;
+      --shell: #e9e0ee;
+      --line: rgba(61, 115, 138, 0.22);
+      --shadow: 0 22px 60px rgba(41, 50, 64, 0.15);
+    }
+
+    [data-theme="solstice"] {
+      --bg: #fff3dd;
+      --bg2: #dff2d9;
+      --paper: rgba(255, 252, 241, 0.9);
+      --paper-solid: #fffcf1;
+      --ink: #3b3a2c;
+      --muted: #7f755e;
+      --teal: #6fa583;
+      --teal-dark: #42775a;
+      --violet: #8d5ea7;
+      --gold: #cc9231;
+      --rose: #e17870;
+      --shell: #ffe1bd;
+      --line: rgba(204, 146, 49, 0.25);
+      --shadow: 0 22px 60px rgba(123, 93, 42, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, rgba(255,255,255,0.9) 0 7%, transparent 24%),
+        radial-gradient(circle at 88% 18%, rgba(218, 239, 232, 0.85) 0 9%, transparent 27%),
+        radial-gradient(circle at 82% 84%, rgba(246, 217, 197, 0.75) 0 10%, transparent 30%),
+        linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%);
+      overflow-x: hidden;
+    }
+
+    body:before, body:after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(0.2px);
+    }
+
+    body:before {
+      width: 420px;
+      height: 420px;
+      left: -140px;
+      top: 190px;
+      background:
+        radial-gradient(circle, rgba(106,166,147,0.18) 0 3px, transparent 4px) 0 0/34px 34px,
+        radial-gradient(circle, rgba(189,145,69,0.13) 0 2px, transparent 4px) 17px 20px/44px 44px;
+      border-radius: 50%;
+      opacity: 0.68;
+    }
+
+    body:after {
+      width: 560px;
+      height: 560px;
+      right: -250px;
+      bottom: -210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,90,166,0.12), transparent 70%);
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 10px);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.7), rgba(255,255,255,0.22)),
+        radial-gradient(circle at 20% 80%, rgba(106,166,147,0.25), transparent 35%),
+        radial-gradient(circle at 86% 16%, rgba(189,145,69,0.18), transparent 34%),
+        var(--paper);
+      box-shadow: var(--shadow);
+      padding: clamp(28px, 6vw, 72px);
+    }
+
+    .hero:before {
+      content: "☾";
+      position: absolute;
+      right: clamp(22px, 6vw, 82px);
+      top: clamp(10px, 3vw, 28px);
+      font-size: clamp(90px, 14vw, 200px);
+      line-height: 1;
+      color: rgba(189,145,69,0.18);
+      transform: rotate(-8deg);
+      font-family: var(--serif);
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 14px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: rgba(255,255,255,0.56);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 700;
+      line-height: 1.02;
+      color: var(--teal-dark);
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 88px);
+      max-width: 780px;
+      letter-spacing: -0.05em;
+    }
+
+    h1 span { color: var(--violet); }
+
+    .hero p {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2.1vw, 20px);
+      line-height: 1.75;
+    }
+
+    .season-card {
+      justify-self: end;
+      width: min(100%, 390px);
+      padding: 26px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 45px rgba(55, 83, 72, 0.12);
+    }
+
+    .moon-badge {
+      width: 114px;
+      height: 114px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,0.92), rgba(255,255,255,0.2) 45%, transparent 60%),
+        linear-gradient(135deg, rgba(106,166,147,0.34), rgba(124,90,166,0.18), rgba(189,145,69,0.22));
+      border: 1px solid rgba(255,255,255,0.68);
+      box-shadow: inset 0 0 24px rgba(255,255,255,0.42), 0 16px 34px rgba(55,83,72,0.14);
+      color: var(--teal-dark);
+      font-size: 52px;
+      font-family: var(--serif);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 14px 12px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.58);
+      text-align: center;
+    }
+
+    .stat b {
+      display: block;
+      color: var(--violet);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--teal-dark);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      margin: 18px 0;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 252, 245, 0.78);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 12px 32px rgba(55,83,72,0.10);
+    }
+
+    .toolbar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button, .button-link {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 15px;
+      cursor: pointer;
+      font: 800 12px/1 var(--sans);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      background: rgba(255,255,255,0.62);
+      border: 1px solid var(--line);
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease;
+      text-decoration: none;
+    }
+
+    button:hover, .button-link:hover { transform: translateY(-1px); }
+    button.active, button.primary, .button-link.primary {
+      background: var(--teal-dark);
+      color: white;
+      border-color: transparent;
+    }
+
+    button.gold {
+      background: rgba(189,145,69,0.18);
+      color: #7d5a1d;
+      border-color: rgba(189,145,69,0.34);
+    }
+
+    button.rose {
+      background: rgba(217,140,143,0.16);
+      color: #9c5458;
+      border-color: rgba(217,140,143,0.32);
+    }
+
+    .progress-shell {
+      width: min(100%, 520px);
+      height: 11px;
+      margin: 12px auto 0;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--line);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      transition: width 200ms ease;
+    }
+
+    .progress-note {
+      text-align: center;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 22px 0 18px;
+    }
+
+    .panel {
+      display: none;
+      animation: fade 220ms ease;
+      scroll-margin-top: 180px;
+    }
+
+    .panel.active { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      grid-column: span 12;
+      padding: clamp(20px, 3vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 16px 42px rgba(55,83,72,0.10);
+    }
+
+    .card.half { grid-column: span 6; }
+    .card.third { grid-column: span 4; }
+    .card.two-thirds { grid-column: span 8; }
+
+    .section-head {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .seal {
+      flex: 0 0 auto;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(106,166,147,0.22), rgba(189,145,69,0.18));
+      border: 1px solid var(--line);
+      color: var(--violet);
+      font-size: 22px;
+    }
+
+    h2 { font-size: clamp(30px, 4vw, 50px); }
+    h3 { font-size: clamp(23px, 2.8vw, 34px); color: var(--violet); }
+
+    .subtitle {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .theme-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .mini {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.5);
+    }
+
+    .mini b {
+      color: var(--teal-dark);
+      display: block;
+      margin-bottom: 5px;
+      font-family: var(--serif);
+      font-size: 19px;
+    }
+
+    .mini span { color: var(--muted); line-height: 1.5; font-size: 14px; }
+
+    .field {
+      margin-top: 16px;
+    }
+
+    label, .label {
+      display: block;
+      margin: 0 0 8px;
+      color: var(--teal-dark);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+    }
+
+    input[type="text"], textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.74);
+      color: var(--ink);
+      padding: 14px 15px;
+      font: 500 15px/1.55 var(--sans);
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+    textarea.tall { min-height: 190px; }
+    textarea.short { min-height: 86px; }
+    input[type="text"]:focus, textarea:focus, select:focus {
+      border-color: rgba(63,127,109,0.58);
+      box-shadow: 0 0 0 4px rgba(106,166,147,0.14);
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .check-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .check {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(255,255,255,0.52);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--teal-dark);
+    }
+
+    .table-like {
+      display: grid;
+      gap: 12px;
+    }
+
+    .doubt-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.42);
+    }
+
+    .joy-map {
+      position: relative;
+      min-height: 390px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 50% 46%, rgba(255,255,255,0.95) 0 95px, transparent 97px),
+        radial-gradient(circle at 18% 22%, rgba(217,140,143,0.18), transparent 22%),
+        radial-gradient(circle at 80% 22%, rgba(189,145,69,0.18), transparent 22%),
+        radial-gradient(circle at 18% 78%, rgba(106,166,147,0.20), transparent 24%),
+        radial-gradient(circle at 82% 78%, rgba(124,90,166,0.16), transparent 24%),
+        rgba(255,255,255,0.44);
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .joy-center {
+      width: min(260px, 80%);
+      margin: 112px auto 16px;
+      text-align: center;
+    }
+
+    .joy-center input { text-align: center; font-family: var(--serif); font-size: 25px; }
+
+    .joy-practice-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .joy-step-list, .receive-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .joy-step, .receive-item {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.48);
+    }
+
+    .joy-step .step-kicker {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(107,93,168,0.10);
+      color: var(--violet);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .joy-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .joy-plan {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .receive-item textarea { min-height: 96px; }
+
+    .tarot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .tarot-card {
+      padding: 18px;
+      min-height: 330px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.68), rgba(255,255,255,0.32)),
+        radial-gradient(circle at 50% 0%, rgba(189,145,69,0.18), transparent 42%);
+    }
+
+    .tarot-number {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: var(--teal-dark);
+      color: white;
+      font-weight: 900;
+    }
+
+    .tarot-card .label { min-height: 42px; color: var(--violet); }
+    .tarot-card textarea { min-height: 112px; }
+
+    .ritual-box {
+      border-left: 4px solid var(--gold);
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(189,145,69,0.10);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .quote-box {
+      margin: 26px auto 0;
+      max-width: 850px;
+      padding: clamp(24px, 4vw, 42px);
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      background: rgba(255,255,255,0.58);
+      box-shadow: 0 18px 48px rgba(55,83,72,0.11);
+    }
+
+    .quote-box p {
+      margin: 0;
+      font-family: var(--serif);
+      color: var(--teal-dark);
+      font-size: clamp(27px, 4.2vw, 48px);
+      line-height: 1.22;
+    }
+
+    .quote-box cite {
+      display: block;
+      margin-top: 16px;
+      color: var(--violet);
+      font-style: normal;
+      font-family: var(--serif);
+      font-size: 24px;
+    }
+
+    footer {
+      margin: 20px auto 0;
+      padding: 22px 0 0;
+      border-top: 1px solid var(--line);
+      max-width: 920px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    footer .brand {
+      font-family: var(--serif);
+      color: var(--teal-dark);
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 11.5px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(18px);
+      padding: 13px 16px;
+      border-radius: 999px;
+      background: rgba(47,61,57,0.92);
+      color: white;
+      opacity: 0;
+      pointer-events: none;
+      transition: 220ms ease;
+      z-index: 200;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 14px 38px rgba(0,0,0,0.18);
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .season-card { justify-self: stretch; width: 100%; }
+      .card.half, .card.third, .card.two-thirds { grid-column: span 12; }
+      .toolbar { position: relative; top: auto; }
+      .doubt-row, .joy-practice-grid, .joy-plan { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: white; }
+      .toolbar, .tabs, .toast, .hero:before { display: none !important; }
+      .wrap { width: 100%; padding: 0; }
+      .hero, .card, .quote-box { box-shadow: none; page-break-inside: avoid; background: white; }
+      .panel { display: block !important; page-break-before: auto; margin-top: 18px; }
+      button { display: none; }
+      textarea { min-height: 90px; }
+    }
+  </style>
+</head>
+<body data-theme="moonlit">
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">☽ Cancer Season Workbook</div>
+          <h1>Nurture Your <span>Soul</span></h1>
+          <p>A soft, fillable ritual workbook for cultivating self-love, emotional safety, intuitive trust, and support during Cancer Season. Let this be your little moonlit sanctuary for feeling, receiving, and coming home to yourself.</p>
+        </div>
+        <aside class="season-card" aria-label="Cancer season details">
+          <div class="moon-badge">♋︎</div>
+          <div class="stat-row">
+            <div class="stat"><b>Season</b><span>June 21 - July 22</span></div>
+            <div class="stat"><b>Mantra</b><span>I Feel</span></div>
+            <div class="stat"><b>Element</b><span>Water</span></div>
+            <div class="stat"><b>Guide</b><span>The Moon</span></div>
+          </div>
+          <p class="small-note">Your answers auto-save in this browser while you work.</p>
+        </aside>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Workbook actions">
+      <div class="toolbar-inner">
+        <button type="button" class="primary" data-action="copy">Copy My Workbook</button>
+        <button type="button" class="gold" data-action="download">Download Notes</button>
+        <button type="button" data-action="print">Print / Save PDF</button>
+        <button type="button" class="rose" data-action="clear">Clear Saved Work</button>
+      </div>
+      <div class="progress-shell" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="progress-note" id="progressNote">0% complete</div>
+    </section>
+
+    <nav class="tabs" aria-label="Workbook sections">
+      <button type="button" class="tab active" data-tab="overview">Overview</button>
+      <button type="button" class="tab" data-tab="selflove">Self-Love</button>
+      <button type="button" class="tab" data-tab="doubt">Self-Doubt</button>
+      <button type="button" class="tab" data-tab="joy">Joy Practice</button>
+      <button type="button" class="tab" data-tab="solstice">Solstice</button>
+      <button type="button" class="tab" data-tab="fullmoon">Full Moon</button>
+      <button type="button" class="tab" data-tab="tarot">Tarot Spread</button>
+      <button type="button" class="tab" data-tab="receive">Receive</button>
+    </nav>
+
+    <main>
+      <section class="panel active" id="overview">
+        <div class="grid">
+          <article class="card two-thirds">
+            <div class="section-head">
+              <div class="seal">☾</div>
+              <div>
+                <h2>Enter the Inner Sanctuary</h2>
+                <p class="subtitle">Cancer Season invites a slower rhythm: integration, self-care, emotional honesty, giving and receiving, and the kind of support that lets your nervous system exhale.</p>
+              </div>
+            </div>
+            <div class="theme-list">
+              <div class="mini"><b>Self-Love</b><span>Give yourself the tenderness, validation, and affirmation you keep hoping will arrive from outside you.</span></div>
+              <div class="mini"><b>Emotional Safety</b><span>Name what helps you feel held, protected, and steady enough to be honest with yourself.</span></div>
+              <div class="mini"><b>Intuition</b><span>Let your feelings become a doorway into self-awareness, not a reason to abandon your truth.</span></div>
+              <div class="mini"><b>Receiving</b><span>Notice where love, help, and support are already trying to reach you.</span></div>
+            </div>
+          </article>
+
+          <aside class="card third">
+            <h3>Season Compass</h3>
+            <div class="field"><label for="word-season">One word for how I want this season to feel</label><input id="word-season" data-save type="text" placeholder="Nourished, safe, receptive..." /></div>
+            <div class="field"><label for="permission">The permission I am giving myself</label><textarea id="permission" data-save class="short" placeholder="I give myself permission to..."></textarea></div>
+          </aside>
+
+          <article class="card">
+            <div class="prompt-grid">
+              <div class="field"><label for="slow-down">Where am I being invited to slow down and integrate?</label><textarea id="slow-down" data-save></textarea></div>
+              <div class="field"><label for="needs-care">What part of me is asking for more care?</label><textarea id="needs-care" data-save></textarea></div>
+              <div class="field"><label for="safe-vulnerable">What would help me feel safe enough to be vulnerable?</label><textarea id="safe-vulnerable" data-save></textarea></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="selflove">
+        <div class="grid">
+          <article class="card">
+            <div class="section-head">
+              <div class="seal">♡</div>
+              <div>
+                <h2>Loving Yourself</h2>
+                <p class="subtitle">Choose the practices that help you validate, affirm, and tend to yourself during Cancer Season.</p>
+              </div>
+            </div>
+            <div class="check-list">
+              <label class="check"><input data-save id="practice-letter" type="checkbox" /> Write a love letter to myself</label>
+              <label class="check"><input data-save id="practice-joy" type="checkbox" /> Do something I love</label>
+              <label class="check"><input data-save id="practice-mirror" type="checkbox" /> Say "I love you" in the mirror</label>
+              <label class="check"><input data-save id="practice-song" type="checkbox" /> Sing a love song to myself</label>
+            </div>
+          </article>
+
+          <article class="card half">
+            <h3>Daily Love List</h3>
+            <p class="subtitle">Write what you genuinely appreciate about yourself. Start tiny if that feels more honest.</p>
+            <div class="field"><label for="love-list">Things I love about myself</label><textarea id="love-list" data-save class="tall" placeholder="I love that I..."></textarea></div>
+          </article>
+
+          <article class="card half">
+            <h3>Joy for the Sake of Joy</h3>
+            <p class="subtitle">A Cancer Season question for gentle devotion: what will make me smile today?</p>
+            <div class="field"><label for="smile-today">What will make me smile today?</label><textarea id="smile-today" data-save></textarea></div>
+            <div class="field"><label for="playlist-song">The song / playlist I want to use as a self-love ritual</label><input id="playlist-song" data-save type="text" placeholder="Song, artist, playlist, or mood" /></div>
+          </article>
+
+          <article class="card">
+            <h3>Love Letter Draft</h3>
+            <div class="field"><label for="love-letter">Dear me...</label><textarea id="love-letter" data-save class="tall" placeholder="Write the words your soul has been waiting to hear from you."></textarea></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="doubt">
+        <div class="grid">
+          <article class="card">
+            <div class="section-head">
+              <div class="seal">✦</div>
+              <div>
+                <h2>Letting Go of Self-Doubt</h2>
+                <p class="subtitle">When fears or old stories rise, give them a compassionate counter-statement that brings you back to possibility.</p>
+              </div>
+            </div>
+            <div class="ritual-box"><strong>Example:</strong> Even though I have fear about living my dreams, I choose to believe they can manifest.</div>
+          </article>
+          <article class="card">
+            <div class="table-like">
+              <div class="doubt-row">
+                <div class="field"><label for="doubt-1">Block / Doubt 1</label><textarea id="doubt-1" data-save class="short"></textarea></div>
+                <div class="field"><label for="oppose-1">Opposing Statement 1</label><textarea id="oppose-1" data-save class="short"></textarea></div>
+              </div>
+              <div class="doubt-row">
+                <div class="field"><label for="doubt-2">Block / Doubt 2</label><textarea id="doubt-2" data-save class="short"></textarea></div>
+                <div class="field"><label for="oppose-2">Opposing Statement 2</label><textarea id="oppose-2" data-save class="short"></textarea></div>
+              </div>
+              <div class="doubt-row">
+                <div class="field"><label for="doubt-3">Block / Doubt 3</label><textarea id="doubt-3" data-save class="short"></textarea></div>
+                <div class="field"><label for="oppose-3">Opposing Statement 3</label><textarea id="oppose-3" data-save class="short"></textarea></div>
+              </div>
+              <div class="doubt-row">
+                <div class="field"><label for="doubt-4">Block / Doubt 4</label><textarea id="doubt-4" data-save class="short"></textarea></div>
+                <div class="field"><label for="oppose-4">Opposing Statement 4</label><textarea id="oppose-4" data-save class="short"></textarea></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="joy">
+        <div class="grid">
+          <article class="card">
+            <div class="section-head">
+              <div class="seal">✿</div>
+              <div>
+                <h2>Joy as Nourishment</h2>
+                <p class="subtitle">Instead of mapping everything at once, use this page to choose one joy that can actually hold you this week: simple, sensory, doable, and yours.</p>
+              </div>
+            </div>
+            <div class="joy-practice-grid">
+              <div>
+                <h3>Choose Your Joy Frequency</h3>
+                <p class="subtitle">What kind of joy would feel most nourishing right now?</p>
+                <div class="joy-menu" aria-label="Joy frequency options">
+                  <label class="check"><input data-save id="joy-soft" type="checkbox" /> Soft joy</label>
+                  <label class="check"><input data-save id="joy-playful" type="checkbox" /> Playful joy</label>
+                  <label class="check"><input data-save id="joy-sensory" type="checkbox" /> Sensory joy</label>
+                  <label class="check"><input data-save id="joy-creative" type="checkbox" /> Creative joy</label>
+                  <label class="check"><input data-save id="joy-connected" type="checkbox" /> Connected joy</label>
+                  <label class="check"><input data-save id="joy-quiet" type="checkbox" /> Quiet joy</label>
+                </div>
+                <div class="field"><label for="joy-body">How do I want joy to feel in my body?</label><textarea id="joy-body" data-save class="short" placeholder="Lighter, softer, more spacious, playful..."></textarea></div>
+              </div>
+
+              <div class="joy-step-list">
+                <div class="joy-step">
+                  <span class="step-kicker">Step 1 · Notice</span>
+                  <div class="field"><label for="joy-available">What tiny joys are already available to me today?</label><textarea id="joy-available" data-save class="short" placeholder="A song, sunlight, a favorite drink, a walk, fresh sheets..."></textarea></div>
+                </div>
+                <div class="joy-step">
+                  <span class="step-kicker">Step 2 · Remove friction</span>
+                  <div class="field"><label for="joy-barrier">What usually interrupts or delays my joy?</label><textarea id="joy-barrier" data-save class="short" placeholder="Guilt, overworking, waiting until everything is finished..."></textarea></div>
+                </div>
+                <div class="joy-step">
+                  <span class="step-kicker">Step 3 · Devote</span>
+                  <div class="field"><label for="joy-devotion">The joy I am choosing on purpose</label><textarea id="joy-devotion" data-save class="short" placeholder="This week I am giving myself..."></textarea></div>
+                  <div class="joy-plan">
+                    <div class="field"><label for="joy-day">Day</label><input id="joy-day" data-save type="text" placeholder="Friday" /></div>
+                    <div class="field"><label for="joy-time">Time</label><input id="joy-time" data-save type="text" placeholder="After lunch" /></div>
+                    <div class="field"><label for="joy-minutes">For</label><input id="joy-minutes" data-save type="text" placeholder="20 minutes" /></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="solstice">
+        <div class="grid">
+          <article class="card">
+            <div class="section-head">
+              <div class="seal">☀</div>
+              <div>
+                <h2>Summer Solstice</h2>
+                <p class="subtitle">June 21 marks the shift into summer: a movement from action into nourishment, meaning, inspiration, hope, and light.</p>
+              </div>
+            </div>
+            <div class="check-list">
+              <label class="check"><input data-save id="ritual-intentions" type="checkbox" /> Set intentions</label>
+              <label class="check"><input data-save id="ritual-gratitude" type="checkbox" /> Express gratitude</label>
+              <label class="check"><input data-save id="ritual-sun" type="checkbox" /> Sun salutations</label>
+              <label class="check"><input data-save id="ritual-directions" type="checkbox" /> Honor the four directions</label>
+              <label class="check"><input data-save id="ritual-bonfire" type="checkbox" /> Bonfire</label>
+              <label class="check"><input data-save id="ritual-stars" type="checkbox" /> Stargazing</label>
+              <label class="check"><input data-save id="ritual-herbs" type="checkbox" /> Collect herbs</label>
+            </div>
+          </article>
+          <article class="card third">
+            <h3>Intention</h3>
+            <div class="field"><label for="solstice-intention">What am I calling into summer?</label><textarea id="solstice-intention" data-save></textarea></div>
+          </article>
+          <article class="card third">
+            <h3>Nourishment</h3>
+            <div class="field"><label for="solstice-nourish">What would help me feel nourished?</label><textarea id="solstice-nourish" data-save></textarea></div>
+          </article>
+          <article class="card third">
+            <h3>Gratitude</h3>
+            <div class="field"><label for="solstice-gratitude">What light am I grateful for?</label><textarea id="solstice-gratitude" data-save></textarea></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="fullmoon">
+        <div class="grid">
+          <article class="card">
+            <div class="section-head">
+              <div class="seal">●</div>
+              <div>
+                <h2>Full Moon in Capricorn</h2>
+                <p class="subtitle">This moon helps you connect Cancer's home frequency with Capricorn's direction, values, responsibility, and clear devotion to what matters.</p>
+              </div>
+            </div>
+            <div class="ritual-box">Ask yourself: <strong>Am I aligned with my purpose?</strong> Let the answer be honest before it becomes strategic.</div>
+          </article>
+          <article class="card half">
+            <div class="field"><label for="held-supported">What helps me feel held and supported?</label><textarea id="held-supported" data-save></textarea></div>
+            <div class="field"><label for="disharmony">What creates disharmony in my life balance?</label><textarea id="disharmony" data-save></textarea></div>
+          </article>
+          <article class="card half">
+            <div class="field"><label for="life-balance">What does life balance look like for me?</label><textarea id="life-balance" data-save></textarea></div>
+            <div class="field"><label for="equanimity">What practices help me remain responsible to myself and others?</label><textarea id="equanimity" data-save></textarea></div>
+          </article>
+          <article class="card">
+            <div class="field"><label for="purpose-alignment">Where do I feel aligned with my purpose, and where am I ready to course-correct?</label><textarea id="purpose-alignment" data-save class="tall"></textarea></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="tarot">
+        <div class="grid">
+          <article class="card">
+            <div class="section-head">
+              <div class="seal">☽</div>
+              <div>
+                <h2>Cancer Season Tarot Spread</h2>
+                <p class="subtitle">Pull six cards to explore safety, support, self-love, intuition, emotional processing, and your path back home to yourself.</p>
+              </div>
+            </div>
+            <button type="button" class="gold" data-action="copySpread">Copy Tarot Spread</button>
+            <div class="tarot-grid">
+              <div class="tarot-card">
+                <div class="tarot-number">1</div>
+                <div class="label">What helps me process my emotions?</div>
+                <div class="field"><label for="card-1">Card pulled</label><input id="card-1" data-save type="text" /></div>
+                <div class="field"><label for="meaning-1">Message</label><textarea id="meaning-1" data-save></textarea></div>
+              </div>
+              <div class="tarot-card">
+                <div class="tarot-number">2</div>
+                <div class="label">What makes me feel safe?</div>
+                <div class="field"><label for="card-2">Card pulled</label><input id="card-2" data-save type="text" /></div>
+                <div class="field"><label for="meaning-2">Message</label><textarea id="meaning-2" data-save></textarea></div>
+              </div>
+              <div class="tarot-card">
+                <div class="tarot-number">3</div>
+                <div class="label">How can I develop my intuition?</div>
+                <div class="field"><label for="card-3">Card pulled</label><input id="card-3" data-save type="text" /></div>
+                <div class="field"><label for="meaning-3">Message</label><textarea id="meaning-3" data-save></textarea></div>
+              </div>
+              <div class="tarot-card">
+                <div class="tarot-number">4</div>
+                <div class="label">What does self-love want me to know?</div>
+                <div class="field"><label for="card-4">Card pulled</label><input id="card-4" data-save type="text" /></div>
+                <div class="field"><label for="meaning-4">Message</label><textarea id="meaning-4" data-save></textarea></div>
+              </div>
+              <div class="tarot-card">
+                <div class="tarot-number">5</div>
+                <div class="label">What brings me back to self when I feel lost?</div>
+                <div class="field"><label for="card-5">Card pulled</label><input id="card-5" data-save type="text" /></div>
+                <div class="field"><label for="meaning-5">Message</label><textarea id="meaning-5" data-save></textarea></div>
+              </div>
+              <div class="tarot-card">
+                <div class="tarot-number">6</div>
+                <div class="label">What helps me feel supported?</div>
+                <div class="field"><label for="card-6">Card pulled</label><input id="card-6" data-save type="text" /></div>
+                <div class="field"><label for="meaning-6">Message</label><textarea id="meaning-6" data-save></textarea></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="receive">
+        <div class="grid">
+          <article class="card">
+            <div class="section-head">
+              <div class="seal">✧</div>
+              <div>
+                <h2>Receiving & Coming Home</h2>
+                <p class="subtitle">Move through these one at a time, like a soft closing ritual. Let each answer be a doorway back to your body, your needs, and the love available to you now.</p>
+              </div>
+            </div>
+            <div class="receive-list">
+              <div class="receive-item field"><label for="receive-self">1. What energies am I ready to receive from myself?</label><textarea id="receive-self" data-save></textarea></div>
+              <div class="receive-item field"><label for="receive-others">2. What energies am I ready to receive from others?</label><textarea id="receive-others" data-save></textarea></div>
+              <div class="receive-item field"><label for="receive-universe">3. What energies am I ready to receive from the Universe?</label><textarea id="receive-universe" data-save></textarea></div>
+              <div class="receive-item field"><label for="process-emotions">4. What helps me address, process, and understand my emotions?</label><textarea id="process-emotions" data-save></textarea></div>
+              <div class="receive-item field"><label for="home-to-self">5. What brings me home to myself when I feel lost in my emotions?</label><textarea id="home-to-self" data-save></textarea></div>
+              <div class="receive-item field"><label for="affirmations">6. My Cancer Season affirmations</label><textarea id="affirmations" data-save placeholder="I allow myself to feel vulnerable...&#10;I give myself permission to feel...&#10;I am open to receiving guidance from my intuition..."></textarea></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section class="quote-box" aria-label="Closing quote">
+      <p>“You are allowed to be both a masterpiece and a work in progress.”</p>
+      <cite>Sophia Bush</cite>
+    </section>
+
+    <footer>
+      <div class="brand">Soul-Forged Founders</div>
+      <div>
+        <a href="https://www.sunnysink.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <span aria-hidden="true"> | </span>
+        <a href="https://www.sunnysink.com/terms-conditions" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+      </div>
+      <div>© 2026 S Sink Coaching</div>
+      <div>PO Box 1651 Gillette, WY 82717-1651</div>
+      <div>support@sunnysink.com</div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Saved</div>
+
+  <script>
+    (function () {
+      const storageKey = 'cancer-season-workbook-v2';
+      const currentTabKey = storageKey + ':tab';
+      const saveEls = Array.from(document.querySelectorAll('[data-save]'));
+      const tabs = Array.from(document.querySelectorAll('.tab'));
+      const panels = Array.from(document.querySelectorAll('.panel'));
+      const toast = document.getElementById('toast');
+      const progressBar = document.getElementById('progressBar');
+      const progressNote = document.getElementById('progressNote');
+      let toastTimer;
+
+      function canStore() {
+        try {
+          const t = '__test__';
+          localStorage.setItem(t, t);
+          localStorage.removeItem(t);
+          return true;
+        } catch (error) { return false; }
+      }
+
+      const storageReady = canStore();
+
+      function getState() {
+        const state = {};
+        saveEls.forEach(el => {
+          if (!el.id) return;
+          state[el.id] = el.type === 'checkbox' ? el.checked : el.value;
+        });
+        return state;
+      }
+
+      function saveState(show = false) {
+        if (storageReady) {
+          localStorage.setItem(storageKey, JSON.stringify(getState()));
+        }
+        updateProgress();
+        if (show) showToast('Saved in this browser');
+      }
+
+      function loadState() {
+        if (!storageReady) return;
+        const raw = localStorage.getItem(storageKey);
+        if (!raw) return;
+        try {
+          const state = JSON.parse(raw);
+          saveEls.forEach(el => {
+            if (!el.id || !(el.id in state)) return;
+            if (el.type === 'checkbox') el.checked = !!state[el.id];
+            else el.value = state[el.id];
+          });
+        } catch (error) {
+          console.warn('Could not load saved workbook', error);
+        }
+      }
+
+      function updateProgress() {
+        const total = saveEls.length;
+        const filled = saveEls.filter(el => {
+          if (el.type === 'checkbox') return el.checked;
+          return String(el.value || '').trim().length > 0;
+        }).length;
+        const pct = total ? Math.round((filled / total) * 100) : 0;
+        progressBar.style.width = pct + '%';
+        progressNote.textContent = pct + '% complete · ' + filled + ' of ' + total + ' fields touched';
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2100);
+      }
+
+      function activateTab(tabId, shouldScroll = true) {
+        tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+        panels.forEach(panel => panel.classList.toggle('active', panel.id === tabId));
+        if (storageReady) localStorage.setItem(currentTabKey, tabId);
+
+        // Keep the section heading visible when changing workbook tabs.
+        // The old version scrolled the tab row to the top, where the sticky toolbar covered the new section title.
+        if (shouldScroll) {
+          requestAnimationFrame(() => {
+            const panel = document.getElementById(tabId);
+            const toolbar = document.querySelector('.toolbar');
+            if (!panel) return;
+            const offset = (toolbar ? toolbar.offsetHeight : 0) + 28;
+            const targetY = panel.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
+          });
+        }
+      }
+
+      document.body.dataset.theme = 'moonlit';
+
+      function labelFor(el) {
+        const explicit = document.querySelector('label[for="' + CSS.escape(el.id) + '"]');
+        if (explicit) return explicit.textContent.trim();
+        const wrapped = el.closest('label');
+        if (wrapped) return wrapped.textContent.trim();
+        const card = el.closest('.tarot-card');
+        if (card && card.querySelector('.label')) return card.querySelector('.label').textContent.trim();
+        return el.id;
+      }
+
+      function sectionFor(el) {
+        const panel = el.closest('.panel');
+        if (!panel) return 'Workbook';
+        const tab = tabs.find(btn => btn.dataset.tab === panel.id);
+        return tab ? tab.textContent.trim() : panel.id;
+      }
+
+      function buildText(onlySpread = false) {
+        const lines = [];
+        lines.push('Cancer Season Workbook');
+        lines.push('Nurture Your Soul');
+        lines.push('');
+
+        if (onlySpread) {
+          lines.push('Cancer Season Tarot Spread');
+          for (let i = 1; i <= 6; i++) {
+            const card = document.getElementById('card-' + i);
+            const meaning = document.getElementById('meaning-' + i);
+            const tarotLabel = card.closest('.tarot-card').querySelector('.label').textContent.trim();
+            lines.push(i + '. ' + tarotLabel);
+            lines.push('Card: ' + (card.value.trim() || '[blank]'));
+            lines.push('Message: ' + (meaning.value.trim() || '[blank]'));
+            lines.push('');
+          }
+          return lines.join('\n');
+        }
+
+        let currentSection = '';
+        saveEls.forEach(el => {
+          const section = sectionFor(el);
+          const value = el.type === 'checkbox' ? (el.checked ? 'Yes' : '') : String(el.value || '').trim();
+          if (!value) return;
+          if (section !== currentSection) {
+            currentSection = section;
+            lines.push('');
+            lines.push('## ' + currentSection);
+          }
+          lines.push(labelFor(el) + ':');
+          lines.push(value);
+          lines.push('');
+        });
+        return lines.join('\n').trim() + '\n';
+      }
+
+      async function copyText(text, successMessage) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast(successMessage);
+        } catch (error) {
+          const area = document.createElement('textarea');
+          area.value = text;
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand('copy');
+          document.body.removeChild(area);
+          showToast(successMessage);
+        }
+      }
+
+      function downloadText() {
+        const blob = new Blob([buildText(false)], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'cancer-season-workbook-notes.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showToast('Notes downloaded');
+      }
+
+      function clearWork() {
+        const confirmed = confirm('Clear your saved workbook answers from this browser?');
+        if (!confirmed) return;
+        saveEls.forEach(el => {
+          if (el.type === 'checkbox') el.checked = false;
+          else el.value = '';
+        });
+        if (storageReady) localStorage.removeItem(storageKey);
+        updateProgress();
+        showToast('Saved answers cleared');
+      }
+
+      saveEls.forEach(el => {
+        el.addEventListener('input', () => saveState(false));
+        el.addEventListener('change', () => saveState(true));
+        el.addEventListener('blur', () => saveState(false));
+      });
+
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+      });
+
+      document.querySelector('[data-action="copy"]').addEventListener('click', () => copyText(buildText(false), 'Workbook copied'));
+      document.querySelector('[data-action="download"]').addEventListener('click', downloadText);
+      document.querySelector('[data-action="print"]').addEventListener('click', () => window.print());
+      document.querySelector('[data-action="clear"]').addEventListener('click', clearWork);
+      document.querySelector('[data-action="copySpread"]').addEventListener('click', () => copyText(buildText(true), 'Tarot spread copied'));
+
+      loadState();
+      document.body.dataset.theme = 'moonlit';
+      const savedTab = storageReady ? localStorage.getItem(currentTabKey) : null;
+      if (savedTab && document.getElementById(savedTab)) activateTab(savedTab, false);
+      updateProgress();
+
+      if (!storageReady) showToast('Browser storage is blocked, so answers may not persist');
+    })();
+  </script>
+</body>
+</html>
