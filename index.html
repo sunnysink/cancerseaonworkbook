@@ -60,7 +60,7 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; scroll-padding-top: 180px; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -334,7 +334,7 @@
     .panel {
       display: none;
       animation: fade 220ms ease;
-      scroll-margin-top: 180px;
+      scroll-margin-top: 260px;
     }
 
     .panel.active { display: block; }
@@ -1153,21 +1153,38 @@
         toastTimer = setTimeout(() => toast.classList.remove('show'), 2100);
       }
 
+      function getSafeTabOffset() {
+        const toolbar = document.querySelector('.toolbar');
+        if (!toolbar) return 32;
+        const toolbarStyles = window.getComputedStyle(toolbar);
+        if (toolbarStyles.position !== 'sticky') return 32;
+        const toolbarRect = toolbar.getBoundingClientRect();
+        return Math.ceil(toolbarRect.height) + 34;
+      }
+
+      function scrollTabsIntoSafeView(tabId) {
+        const tabsNav = document.querySelector('.tabs');
+        const panel = document.getElementById(tabId);
+        if (!tabsNav && !panel) return;
+
+        // Keep the section menu visible after a tab click.
+        // The toolbar stays sticky at the top, so we scroll to the tab menu
+        // instead of the panel heading. That way the active tab + heading both remain visible.
+        const scrollTarget = tabsNav || panel;
+        const targetTop = scrollTarget.getBoundingClientRect().top + window.pageYOffset;
+        const targetY = Math.max(targetTop - getSafeTabOffset(), 0);
+        window.scrollTo({ top: targetY, behavior: 'auto' });
+      }
+
       function activateTab(tabId, shouldScroll = true) {
         tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
         panels.forEach(panel => panel.classList.toggle('active', panel.id === tabId));
         if (storageReady) localStorage.setItem(currentTabKey, tabId);
 
-        // Keep the section heading visible when changing workbook tabs.
-        // The old version scrolled the tab row to the top, where the sticky toolbar covered the new section title.
+        // A tab click should keep the section menu visible while revealing the chosen section.
         if (shouldScroll) {
           requestAnimationFrame(() => {
-            const panel = document.getElementById(tabId);
-            const toolbar = document.querySelector('.toolbar');
-            if (!panel) return;
-            const offset = (toolbar ? toolbar.offsetHeight : 0) + 28;
-            const targetY = panel.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
+            requestAnimationFrame(() => scrollTabsIntoSafeView(tabId));
           });
         }
       }
@@ -1275,7 +1292,11 @@
       });
 
       tabs.forEach(btn => {
-        btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+        btn.addEventListener('click', (event) => {
+          event.preventDefault();
+          btn.blur();
+          activateTab(btn.dataset.tab);
+        });
       });
 
       document.querySelector('[data-action="copy"]').addEventListener('click', () => copyText(buildText(false), 'Workbook copied'));
